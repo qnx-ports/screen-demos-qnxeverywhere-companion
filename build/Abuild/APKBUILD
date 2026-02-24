@@ -1,0 +1,35 @@
+pkgname=screen-demos-qnxeverywhere
+pkgver=0
+pkgrel=0
+pkgdesc="QNX screen demos for QNX Everywhere"
+url="https://qnx.com"
+arch="all"
+license="LicenseRef-QDL-Non-Commercial"
+depends="font-dejavu freetype libpng qnx-io-sock qnx-screen"
+makedepends="qnx-screen-dev qnx-io-sock-dev freetype-dev"
+source="screen-demos-qnxeverywhere-$pkgver.$pkgrel.tar.gz"
+builddir="$srcdir/$pkgname"
+
+build() {
+    export CFLAGS=-O2
+
+    cd "$builddir/demolauncher"
+    ./build.sh
+
+    cd "$builddir/fullscreen-winmgr"
+    ./build.sh
+}
+
+package() {
+    mkdir -p "$pkgdir"
+
+    cd "$builddir/demolauncher"
+    DESTDIR="$pkgdir" PREFIX=/usr ./build.sh install
+
+    cd "$builddir/fullscreen-winmgr"
+    DESTDIR="$pkgdir" PREFIX=/usr ./build.sh install
+}
+
+sha512sums="
+015b7f06a5aa21dc824f8eb599c69ce6be004a4997aba51fc60ffdf2153c00cf6b37c21f0339ba78b6707ecffe693e2c7d6bfb43324b2565322f31ae2f20ba22  screen-demos-qnxeverywhere-0.0.tar.gz
+"
