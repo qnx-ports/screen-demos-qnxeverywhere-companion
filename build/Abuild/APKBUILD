@@ -1,6 +1,6 @@
 pkgname=screen-demos-qnxeverywhere
 pkgver=0
-pkgrel=${pkgrel:-0}
+pkgrel=0
 pkgdesc="QNX screen demos for QNX Everywhere"
 url="https://qnx.com"
 arch="all"
@@ -30,7 +30,6 @@ package() {
     DESTDIR="$pkgdir" PREFIX=/usr ./build.sh install
 }
 
-options="$options ${DISABLE_CHECK:+!check}"
 sha512sums="
 015b7f06a5aa21dc824f8eb599c69ce6be004a4997aba51fc60ffdf2153c00cf6b37c21f0339ba78b6707ecffe693e2c7d6bfb43324b2565322f31ae2f20ba22  screen-demos-qnxeverywhere-0.0.tar.gz
 "
